@@ -1,5 +1,5 @@
 # Borganica
-Web Service for 
+Web Service for Borganica project management
 
 - Build and execution (Require Visual Studio 2017 and NodeJs 6.10+)
 - Clone the repo

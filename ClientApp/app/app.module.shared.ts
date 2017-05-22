@@ -6,16 +6,18 @@ import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './components/app/app.component'
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { ExchangeComponent } from './components/exchange/exchange.component';
-import { HistoryComponent } from './components/history/history.component';
+import { ProjectsIndexComponent } from './components/projects/projects.index.component';
+import { ProjectCreateComponent } from './components/projects/projects.create.component';
+import { ProjectEditComponent } from './components/projects/projects.edit.component';
 
 export const sharedConfig: NgModule = {
-    bootstrap: [ AppComponent ],
+    bootstrap: [AppComponent],
     declarations: [
         AppComponent,
         NavMenuComponent,
-        ExchangeComponent,
-        HistoryComponent,
+        ProjectsIndexComponent,
+        ProjectCreateComponent,
+        ProjectEditComponent,
         HomeComponent
     ],
     imports: [
@@ -24,8 +26,9 @@ export const sharedConfig: NgModule = {
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'exchange', component: ExchangeComponent },
-            { path: 'history', component: HistoryComponent },
+            { path: 'projects', component: ProjectsIndexComponent },
+            { path: 'projects/create', component: ProjectCreateComponent },
+            { path: 'projects/:id', component: ProjectEditComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RealEyesHomework.Dtos
+namespace Borganica.Dtos
 {
     public class CurrencyRatesDto
     {

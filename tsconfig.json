@@ -1,5 +1,20 @@
 {
   "compilerOptions": {
+    "allowJs": false,
+    "declaration": false,
+    "noEmitOnError": true,
+    "stripInternal": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitUseStrict": false,
+    "strictNullChecks": false,//
+    "suppressImplicitAnyIndexErrors": false,
+	
     "moduleResolution": "node",
     "target": "es5",
     "sourceMap": true,

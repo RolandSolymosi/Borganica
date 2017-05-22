@@ -1,0 +1,42 @@
+<h1>Projects</h1>
+
+<p *ngIf="!projects"><em>Loading...</em></p>
+
+<div>
+    <a class="col-md-2 btn btn-sm btn-default" routerLink="/projects/create">Create Project</a>
+    <div class="col-md-5"></div>
+    <div class="pull-right col-md-6 pull-right">
+        <strong class="col-md-4">State Filter: </strong>
+        <select class="col-md-6" [(ngModel)]="filterState" (ngModelChange)="filterProjects()">
+            <option *ngFor="let s of states()" [ngValue]="s">{{s}}</option>
+        </select>
+        <button class="btn btn-sm btn col-md-2" (click)="resetFilter()">Unfilter</button>
+    </div>
+</div>
+
+<table class='table'>
+    <thead>
+        <tr>
+            <th class="col-md-2">Name</th>
+            <th class="col-md-2">Created</th>
+            <th class="col-md-2">Creator</th>
+            <th class="col-md-2">Location - City</th>
+            <th class="col-md-2">Profit</th>
+            <th class="col-md-1">State</th>
+            <th class="col-md-1"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let project of filteredProjects">
+            <td>{{ project.name }}</td>
+            <td>{{ project.created | date:"yyyy.MMMM.dd"  }}</td>
+            <td>{{ project.creator }}</td>
+            <td>{{ project.location.cityName }}</td>
+            <td>{{ project.profit | number:'1.0-2'}}</td>
+            <td>{{ stateName(project.state) }}</td>
+            <td>
+                <a routerLink="/projects/{{project.id}}" class="btn btn-sm btn-success pull-right">Edit Project</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

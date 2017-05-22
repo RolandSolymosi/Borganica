@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using RealEyesHomework.Services;
+using Borganica.Services;
+using Borganica.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace RealEyesHomework
+namespace Borganica
 {
     public class Startup
     {
@@ -21,6 +24,12 @@ namespace RealEyesHomework
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
+            if (env.IsDevelopment())
+            {
+                //builder.AddApplicationInsightsSettings(developerMode: true);
+            }
+
             Configuration = builder.Build();
         }
 
@@ -32,7 +41,16 @@ namespace RealEyesHomework
             // Add framework services.
             services.AddMvc();
 
-            services.AddSingleton<IExchangesService, ExchangesService>();
+            // Db access
+            services.AddDbContext<AppDbContext>(options =>
+                options
+                    .UseSqlServer(Configuration.GetConnectionString("Domain"), sqlOptions =>
+                        sqlOptions.EnableRetryOnFailure()
+                    )
+                    .ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning))
+            );
+
+            services.AddScoped<IProjectsService, ProjectsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +62,8 @@ namespace RealEyesHomework
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
                     HotModuleReplacement = true
                 });
             }

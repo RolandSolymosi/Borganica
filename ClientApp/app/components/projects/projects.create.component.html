@@ -1,0 +1,27 @@
+<h1>Project create</h1>
+
+<p *ngIf="!project"><em>Loading...</em></p>
+
+<div *ngIf="project">
+    <div class="col-md-12">
+        <strong class="col-md-2">Name: </strong>
+        <input class="col-md-4" type="text" [(ngModel)]="project.name" />
+    </div>
+    <div class="col-md-12">
+        <strong class="col-md-2">Profit: </strong>
+        <input class="col-md-4" type="number" step="0.01" [(ngModel)]="project.profit" />
+    </div>
+    <div class="col-md-12">
+        <strong class="col-md-1">City: </strong>
+        <input class="col-md-3" type="text" [(ngModel)]="project.location.cityName" />
+
+        <strong class="col-md-1">Latitude: </strong>
+        <input class="col-md-3" type="text" [(ngModel)]="project.location.latitude" />
+
+        <strong class="col-md-1">Longitude: </strong>
+        <input class="col-md-3" type="text" [(ngModel)]="project.location.longitude" />
+    </div>
+    <div>
+        <button class="btn btn-sm btn-success pull-right" (click)="saveProject()">Create</button>
+    </div>
+</div>

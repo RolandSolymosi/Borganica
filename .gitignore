@@ -44,3 +44,4 @@ npm-debug.log
 /ClientApp/dist
 /wwwroot/dist
 /node_modules/
+/lib/RCWPF/2017.2.503.45.NoXaml.Trial
